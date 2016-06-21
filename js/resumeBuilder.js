@@ -30,6 +30,7 @@ $("#header").append(uploadPic);
 
 
 
+
 var bio = { //object
     "name": "Ben",
     "age": 26,
@@ -45,6 +46,10 @@ var bio = { //object
     "bioPic": "images/fry.jpg"
 
 };
+
+var gitHub = bio.contactInfo.github;
+var replaceHeader = HTMLgithub.replace("%data%",gitHub);
+$("#header").append(replaceHeader);
 
 //$("#main").append(bio.welcomeMessage);
 // shows welcome message in bio, acess all with dot notation 
