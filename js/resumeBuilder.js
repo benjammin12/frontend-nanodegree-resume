@@ -24,8 +24,10 @@ $("#main").prepend(replaceRole);
 $("#main").prepend(replaceName);
 
 
-var uploadPic = HTMLbioPic.replace("%data%", "images/fry.jpg");
+var uploadPic = HTMLbioPic.replace("%data%", "images/notebook.jpg");
 $("#header").append(uploadPic);
+
+
 
 
 
@@ -37,19 +39,33 @@ var bio = { //object
     "Occupation": "Therapist",
     "contactInfo": {
         "mobile": "555-332-3145",
-        "email": "ben101@gmail.com",
+        "email": "benxerri@gmail.com",
         "facebook": "facebook.com",
         "github" : "github.com/benjammin12"
     },
     "welcomeMessage": "Welcome to resume",
-    "skills" : ["Java", "javaScript", "html", "css"],
+    "skills" : ["Java", "JavaScript", "CSS", "HTML", "GoLang"],
     "bioPic": "images/fry.jpg"
 
 };
 
+$("#header").append(HTMLskillsStart);
+
+for (var i = 0; i < bio.skills.length; i++) {
+    if (bio.skills.length > 0) {
+        var formatSkill = HTMLskills.replace("%data%", bio.skills[i]);
+        $("#skills").prepend(formatSkill);
+    }
+}
+
 var gitHub = bio.contactInfo.github;
 var replaceHeader = HTMLgithub.replace("%data%",gitHub);
 $("#header").append(replaceHeader);
+var welcomeMSG = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+$("#header").prepend(welcomeMSG);
+var getEmail = HTMLemail.replace("%data%", bio.contactInfo.email);
+$("#header").append(getEmail);
+
 
 //$("#main").append(bio.welcomeMessage);
 // shows welcome message in bio, acess all with dot notation 
@@ -101,25 +117,15 @@ var work = {
 
 
 
-for (var i = 0; i < bio.skills.length; i++) {
-
-    if (bio.skills.length > 0) {
-
-        var formatSkill = HTMLskills.replace("%data%", bio.skills[i]);
-        $("#skills").append(formatSkill);
-
-    }
-
-
-}
 
 for (job in work.jobs) {
     $("#workExperience").append(HTMLworkStart);
     var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].Company);
-
+    var formattedCity = HTMLworkLocation.replace("%data%",work.jobs[job].City);
+    var datesWorked = HTMLworkDates.replace("%data%",work.jobs[job].EmploymentTime);
     var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].Role);
 
-    var position = formattedEmployer + formattedTitle;
+    var position = formattedEmployer + formattedCity +formattedTitle + datesWorked;
 
     $(".work-entry:last").append(position);
 }
